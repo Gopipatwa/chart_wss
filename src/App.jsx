@@ -8,7 +8,7 @@ socket.onopen = () => {
   const msg = {
     "method": "auth",
     "params": {
-      UserId: 2,
+      UserId: 3,
       Token: 'mpouhfBwhqP3aRhsyZgg',
     }
   }
@@ -30,9 +30,10 @@ socket.onopen = () => {
 
 const App = () => {
   const [Data, setData] = useState([]);
+  const [plotdata,setPlotdata] = useState([])
   var user_list = []
   var userData = {}
-
+  let dta;
   useEffect(() => {
     socket.onmessage = (data) => {
       data = JSON.parse(data.data).NetPosition
@@ -61,58 +62,62 @@ const App = () => {
   
   // console.log(Data);
   // console.log(Data);
-const data= Data
-  // const data = [
-  //   {
-  //     name: "Page A",
-  //     uv: '400',
-  //     pv: Math.random()*10000,
-  //     amt: 8000
-  //   },
-  //   {
-  //     name: "Page B",
-  //     uv: 3000,
-  //     pv: 1398,
-  //     amt: 2210
-  //   },
-  //   {
-  //     name: "Page C",
-  //     uv: 2000,
-  //     pv: 9800,
-  //     amt: 2290
-  //   },
-  //   {
-  //     name: "Page D",
-  //     uv: 2780,
-  //     pv: 3908,
-  //     amt: 2000
-  //   },
-  //   {
-  //     name: "Page E",
-  //     uv: 1890,
-  //     pv: 4800,
-  //     amt: 2181
-  //   },
-  //   {
-  //     name: "Page F",
-  //     uv: 2390,
-  //     pv: 3800,
-  //     amt: 2500
-  //   },
-  //   {
-  //     name: "Page G",
-  //     uv: 3490,
-  //     pv: 4300,
-  //     mv: 4511,
-  //     amt: 2100
-  //   }
-  // ];
-
-
+// const data= Data
+setInterval(() => {
+  
+  dta = [
+    {
+      name: "Page A",
+      uv: '400',
+      pv: Math.random()*10000,
+      amt: Math.random()*10000
+    },
+    {
+      name: "Page B",
+      uv: Math.random()*10000,
+      pv: Math.random()*10000,
+      amt: Math.random()*10000
+    },
+    {
+      name: "Page C",
+      uv: 2000,
+      pv: Math.random()*10000,
+      amt: 2290
+    },
+    {
+      name: "Page D",
+      uv: 2780,
+      pv: 3908,
+      amt: Math.random()*10000
+    },
+    {
+      name: "Page E",
+      uv: 1890,
+      pv: 4800,
+      amt: 2181
+    },
+    {
+      name: "Page F",
+      uv: Math.random()*10000,
+      pv: 3800,
+      amt: 2500
+    },
+    {
+      name: "Page G",
+      uv: 3490,
+      pv: 4300,
+      mv: Math.random()*10000,
+      amt: 2100
+    }
+  ];
+  setPlotdata(dta)
+  // console.log(dta);
+}, 1000);  
+  // console.log(dta);
   return (
     <div>
       {/* Data Received:==== {data} */}
-      <Example data={data} />
+      <Example data={plotdata} />
     </div>
   )
 }
